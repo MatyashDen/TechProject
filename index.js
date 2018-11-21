@@ -4,29 +4,29 @@ var
 	express = require('express'),
 	app = express(),
 	firebase = require('firebase'),
-	admin = require('firebase-admin'),
-	serviceAccount = require('./admin-key.json'),
+	//admin = require('firebase-admin'),
+	//serviceAccount = require('./admin-key.json'),
 	favicon = require('serve-favicon'),
 	path = require('path');
 
 firebase.initializeApp({
-  apiKey: "AIzaSyA4XPeig_9bj1JjmyOtzaBKeNnxLSPT-PQ",
-  authDomain: "tui-project-a3956.firebaseapp.com",
-  databaseURL: "https://tui-project-a3956.firebaseio.com",
-  projectId: "tui-project-a3956",
-  storageBucket: "tui-project-a3956.appspot.com",
-  messagingSenderId: "322244282210"
+  apiKey: "AIzaSyCok2kYqVlgwE2D5oB-SwH02P_vAEs6vXc",
+  authDomain: "tech-project-713a5.firebaseapp.com",
+  databaseURL: "https://tech-project-713a5.firebaseio.com",
+  projectId: "tech-project-713a5",
+  storageBucket: "tech-project-713a5.appspot.com",
+  messagingSenderId: "44726095220"
 });
 firebase.firestore().settings( { timestampsInSnapshots: true });
-
+/*
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://tui-project-a3956.firebaseio.com"
-});
+});*/
 
 var db = firebase.firestore();
 
-app.set('port', (process.env.PORT || 5002));
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 

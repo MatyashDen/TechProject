@@ -1,4 +1,4 @@
-# TUI operator
+# TechProject admin
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
@@ -9,8 +9,8 @@ This application supports the [Getting Started with Node on Heroku](https://devc
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone git@github.com:evgenii-kanivets/tui_operator.git
-$ cd tui_operator
+$ git clone git@github.com:MatyashDen/TechProject-admin.git
+$ cd TechProject admin
 $ npm install
 $ npm start
 ```

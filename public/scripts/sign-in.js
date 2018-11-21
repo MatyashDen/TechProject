@@ -21,10 +21,7 @@
 			db.collection("admins").where("email", "==", userEmail.value).get()
 			.then(function(queryAdmins) {
 				if (queryAdmins.size == 1) {
-					if (queryAdmins.docs[0].data().stockId === "") 
-						window.location.href = '/add';
-					else
-						window.location.href = '/stocks/admin-stock/' + queryAdmins.docs[0].data().stockId;
+					window.location.href = '/add';
 				}
 
 				else {

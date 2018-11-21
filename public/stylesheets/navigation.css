@@ -1,27 +1,67 @@
-.nav-bar {
+.nav-bar
+{    	
 	background: #272727;
-	padding: 13px;
-	font-size: 17px;
-    height: 50px;
+
+    top: 0;
+    position: fixed;
+    width: 100%;
+    font-size: 1.3vw;
+    line-height: 4vw;
+
+    height: 4vw;
+    padding: 0;
+
+    z-index: 4;
 }
 
 .nav-left {
-    margin-left: 9%;
+    margin-left: 10%;
     float: left;
 }
 
 .nav-right {
     float: right;
-    margin-right: 9%;
+    margin-right: 10%;
 }
 
 .nav-bar a {
 	position: relative;
 	color: gainsboro;
 	text-decoration: none;
-	margin: 10px;
+	margin: .8vw!important;
 }
 
 .nav-bar a:hover {
     color: white;
 }
+
+.nav-add-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.dd-links {
+    display: none;
+    position: absolute;
+    background-color: #4C4C4C;
+    min-width: 87px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.dd-links a {
+    color: #fff;
+    height: 2.5vw;
+    line-height: 2.5vw;
+    margin: 0 !important;
+    padding: 0vw 1vw;
+    text-decoration: none;
+    display: block;
+}
+
+.dd-links a:hover {background-color: #777;}
+
+.nav-add-wrapper:hover .dd-links {display: block;}
+.dd-links:hover .dd-links {display: block;}

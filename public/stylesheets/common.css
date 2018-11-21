@@ -84,14 +84,16 @@ textarea
 {
     width: 80%;
     margin: auto;
+    margin-top: 5vw!important;
 }
 
 .cmn-head
 {
     display: block;
 
-    margin-bottom: 3vw;
+    margin-bottom: 2vw;
     padding: 1vw;
+    padding-top: 0;
 
     border-bottom: 0.1vw solid black;
 }

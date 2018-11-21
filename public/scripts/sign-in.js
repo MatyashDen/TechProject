@@ -21,7 +21,7 @@
 			db.collection("admins").where("email", "==", userEmail.value).get()
 			.then(function(queryAdmins) {
 				if (queryAdmins.size == 1) {
-					window.location.href = '/add';
+					window.location.href = '/books';
 				}
 
 				else {

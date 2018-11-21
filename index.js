@@ -40,6 +40,31 @@ app.get('/', function(request, response) {
   response.render('pages/sign-in');
 });
 
+app.get("/books", function(request, response) {
+  response.render("pages/books");
+});
+
+app.get("/writers", function(request, response) {
+  response.render("pages/writers");
+});
+
+app.get("/genres", function(request, response) {
+  response.render("pages/genres");
+});
+
+// Add pages
+app.get("/add-book", function(request, response) {
+  response.render("pages/add-book");
+});
+
+app.get("/add-writer", function(request, response) {
+  response.render("pages/add-writer");
+});
+
+app.get("/add-genre", function(request, response) {
+  response.render("pages/add-genre");
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

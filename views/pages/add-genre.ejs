@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+    <style>
+      #nav-add {
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <div class="cmn-row">
+      <div class="cmn-head">
+        <span class="cmn-headline">Додати новий жанр</span>
+        <span class="cmn-subtitle">Прикладами жанрiв можуть бути детективи, дитяча лiтература, фантастика, класична лiтература тощо</span>
+      </div>
+      <div class="cmn-input-group">
+        <input type="text" class="cmn-input" id="add-category-name" autocomplete="off" required>
+        <label class="cmn-input-label">Назва жанру</label>
+        <span class="cmn-input-highlight"></span>
+      </div>
+    </div>
+    <div class="cmn-popup cmn-ppp-error" id="message-box">
+      <span class="cmn-text"></span>
+    </div>
+    <button class="cmn-button cmn-button-center cmn-button-big" id="add-category-button">Додати</button>
+
+    <script src="scripts/message.js"></script>
+    <script src="/scripts/add-category.js"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <style>
+      #nav-genres {
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% if (genres.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає Жанрiв
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <% genres.forEach(function(item) { %>
+          <div class="cmn-category-block">
+            <div class="cmn-category-content">
+              <div class="cmn-category-content-text">
+                <div class="cmn-category-title"><%= item.title %></div>
+              </div>
+              <div class="cmn-category-content-buttons">
+                <a href="/genres/change/<%= item.id %>" class="cmn-button">Змінити</a>
+                <a href="/genres/remove/<%= item.id %>" class="cmn-button cmn-delete-button">Видалити</a>
+              </div>
+            </div>
+          </div>
+        <% });
+        } %> 
+      </div>
+  </body>
+</html>

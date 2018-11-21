@@ -49,7 +49,29 @@ app.get("/writers", function(request, response) {
 });
 
 app.get("/genres", function(request, response) {
-  response.render("pages/genres");
+  let genresCol = db.collection("genres").orderBy("dateOfAdd", "desc");
+
+  genresCol.get()
+  .then(function(genresQuery) {
+    let genres = [];
+
+    genresQuery.forEach(function(doc) {
+      genres.push(doc.data());
+    });  
+
+    response.render("pages/genres", {genres: genres});
+  });
+});
+
+app.get("/genres/change/:genreId", function(request, response) {
+  let genresCol = db.collection("genres");
+
+  genresCol.doc(request.params.genreId).get()
+  .then(function (doc) {
+    if (doc.exists) {
+      response.render("pages/change-genre", {genre: doc.data()});
+    }
+  });
 });
 
 // Add pages

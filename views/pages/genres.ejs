@@ -8,29 +8,33 @@
         font-weight: 600;
       }
     </style>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
   </head>
   <body>
     <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
     <% if (genres.length == 0) { %>
       <div class="cmn-no-tables">
-        Немає Жанрiв
+        Немає жанрiв
       </div>
     <% } else { %>
       <div class="cmn-row">
         <% genres.forEach(function(item) { %>
-          <div class="cmn-category-block">
+          <div class="cmn-category-block" data-id="<%= item.id %>">
             <div class="cmn-category-content">
               <div class="cmn-category-content-text">
                 <div class="cmn-category-title"><%= item.title %></div>
               </div>
               <div class="cmn-category-content-buttons">
-                <a href="/genres/change/<%= item.id %>" class="cmn-button">Змінити</a>
-                <a href="/genres/remove/<%= item.id %>" class="cmn-button cmn-delete-button">Видалити</a>
+                <button onclick="window.location.href='/genres/change/<%= item.id %>'" class="cmn-button">Змінити</button>
+                <button onclick='if (confirm("Ви точно хочете видалити жанр <%= item.title %>?"))removeGenre("<%= item.id %>")' class="cmn-button cmn-delete-button">Видалити</button>
               </div>
             </div>
           </div>
         <% });
         } %> 
       </div>
+
+    <script src="/scripts/genres.js"></script>
   </body>
 </html>

@@ -29,14 +29,13 @@
                     genreCol.update({
                         title: genreName.value
                     }).then(function() {
-                        link = link.substr(0, link.lastIndexOf("/"));
-                        window.location.href = link.substr(0, link.lastIndexOf("/"));
+                        window.location.href = "/genres";
                     });
                 } else {
                     black.style.display = "none";
                     loadBar.style.display = "none";
 
-                    displayMessage("Документу не iснуэ", 1);
+                    displayMessage("Документу не iснує", 1);
                 }
             });
         } else {

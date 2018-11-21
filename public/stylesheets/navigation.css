@@ -38,6 +38,11 @@
 .nav-add-wrapper {
     display: inline-block;
     position: relative;
+    cursor: pointer;
+}
+
+.nav-add-wrapper:hover a {
+    color: white;
 }
 
 .dd-links {

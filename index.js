@@ -76,7 +76,16 @@ app.get("/genres/change/:genreId", function(request, response) {
 
 // Add pages
 app.get("/add-book", function(request, response) {
-  response.render("pages/add-book");
+  db.collection("genres").orderBy("dateOfAdd", "desc").get()
+  .then(function(genresQuery) {
+    let genres = [];
+
+    genresQuery.forEach(function(doc) {
+      genres.push(doc.data());
+    });
+
+    response.render("pages/add-book", {writers: [], genres: genres});  
+  });
 });
 
 app.get("/add-writer", function(request, response) {

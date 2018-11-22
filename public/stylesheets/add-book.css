@@ -1,0 +1,205 @@
+#img {
+	width: 22.2vw;
+	border: 2px solid;
+}
+
+.dish-picture [type] {
+	position: relative;
+	margin-top: 10px;
+}
+
+#dish-select-photo {
+	width: 20vw;
+}
+
+.dish-title {
+	text-align: center;
+	font-size: 2vw;
+}
+
+.dish-consistency {
+	position: relative;
+}
+
+.dish-button {
+	text-align: center;
+}
+
+.start {
+	align-items: flex-start;
+}
+
+.dish-info {
+	flex-grow: 8;
+	margin-left: 5vw;
+}
+
+.dish-info .flex-wrapper {
+	justify-content: space-between;
+}
+
+.cmn-input-group {
+	font-size: 	1.2vw;
+	margin: 0 0 2vw 0;
+}
+
+.dish-consistency .cmn-input-group {
+	width: 40%;
+	margin: 0 2%;
+}
+
+ #description-block {
+	margin-top: 5em;
+} 
+
+#dish-measure-wrapper {
+	width: 40%;
+	transform: translateY(-20%);
+}
+
+.dish-font-select2
+{
+    font-size: 1.3vw;
+}
+
+#dish-measure-wrapper .select2-selection
+{
+    font-size: 1.3vw;
+}
+
+#measure-input {
+	width: 60%;
+	margin-left: 2%;
+}
+
+#dish-measure-wrapper select {
+	width: 100%;
+}
+
+#dish-kitchen {
+	width: 100%;
+}
+
+#dish-categories {
+	width: 100%;
+}
+
+.dish-consistency select {
+	width: 20vw;
+}
+
+.dish-consistency .select2-selection {
+    font-size: 1.3vw;
+}
+
+.dish-consistency .flex-wrapper {
+	align-items: flex-end;
+	margin-bottom: 2vw;
+}
+
+#flex-kitchen .cmn-dropdown {
+	width: 100%;
+}
+
+#flex-kitchen .cmn-category-block {
+	width: 48%;
+	margin: 0 1%;
+}
+
+.w45 {
+	width: 45%;
+}
+
+
+
+.dish-portion-block {
+	margin-top: 1.5vw;
+	text-align: center;
+}
+
+.dish-portion-block .cmn-input-group {
+	width: 100%!important;
+	margin: 2vw 0!important;
+}
+
+.dish-portion-block .dish-portions {
+	display: inline-block;
+	width: 25%
+}
+
+.dish-portion-block .dish-portions {
+	display: inline-block;
+    width: 25%;
+    margin: 0 1vw;
+    padding: 1vw;
+    border-radius: 10%;
+    border: 1px solid;
+    position: relative;
+}
+
+.dish-portion-block .cmn-button {
+	display: block;
+	margin: 0 auto;
+}
+
+.radio-wrapper {
+	margin-bottom: 1vw;
+    text-align: center;
+}
+
+.radio-input {
+	cursor: pointer;
+	line-height: 1.5vw;
+	margin: 0 auto;
+	font-size: 1.2vw;
+	font-weight: 500;
+}
+
+.radio-input input {
+	float: left;
+}
+
+
+
+.radio-dot {
+	float: left;
+	display: inline-block;
+	width: 1.3vw;
+	height: 1.3vw;
+	background: #fff;
+	border: 2px solid #333;
+	border-radius: 50%;
+	margin-right: 0.8vw;
+	position: relative;
+	
+}
+
+.radio-input:hover .radio-dot{
+	background-color: #EEE;
+}
+
+.dish-radio:checked ~ .radio-dot:after {
+	content:"";
+	width: 0.6vw;
+	height: 0.6vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #5264ae;
+	border-radius: 50%;
+	display: block;
+}
+
+
+.dish-radio:checked ~ .radio-dot {
+	border-color: #5264ae;
+}
+
+.dish-radio {
+	display: none;
+}
+
+#test {
+	height: 90px!important;
+}

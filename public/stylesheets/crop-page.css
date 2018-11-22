@@ -1,0 +1,57 @@
+#crop-bar {
+	position: fixed;
+	background: white;
+	color: black;
+	display: none;
+
+	width: 54vw;
+	left: 50%;
+	margin-left: -27vw;
+
+	height: 42vw;
+	top: 50%;
+	margin-top: -21vw;
+
+	border-radius: 8px;
+
+	z-index: +999;
+	border: 1px solid black;
+
+	text-align: center;
+}
+
+#crop-head {
+	background-color: #f2f3f7;
+	font-size: 1.2vw;
+	height: 5vw;
+	border-radius: 8px 8px 0 0;
+
+	line-height: 5vw;
+}
+
+#crop-text {
+	line-height: 4vw;
+	font-size: 1.1vw;
+}
+
+#crop-view-image {
+	position: relative;
+	left: 50%;
+	margin-left: -25vw;
+	width: 50vw;
+	height: 25vw;
+}
+
+#img-crop-accept {
+	position: relative;
+	display: inline;
+
+	left: -8%;
+}
+
+#img-crop-cancel {
+	position: relative;
+	display: inline;
+
+	right: -8%;
+}

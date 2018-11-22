@@ -10,7 +10,7 @@ Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cl
 
 ```sh
 $ git clone git@github.com:MatyashDen/TechProject-admin.git
-$ cd TechProject admin
+$ cd TechProject-admin
 $ npm install
 $ npm start
 ```

@@ -1,41 +1,36 @@
 {
     let 
         db = firebase.firestore(),
+        
+        genreName = $('#genre-name'),
+        addGenreButton = $('#add-genre-button'),
 
-        genreName = document.getElementById('genre-name'),
+        loadBar = $("#load-bar");
 
-        addGenreButton = document.getElementById('add-genre-button'),
-
-        black = document.getElementById("black"),
-        loadBar = document.getElementById("load-bar");
-
-    addGenreButton.onclick = addGenre;
+    addGenreButton.on("click", addGenre);
 
     function addGenre() {
-        black.style.display = "block";
-        loadBar.style.display = "block";
+        loadBar.css("display", "block");
 
         let 
             genreCol = db.collection("genres"),
             key = genreCol.doc().id;
 
-        if (genreName.value !== "") {
+        if (genreName.val()) {
             genreCol.doc(key)
             .set({
                 id: key,
-                title: genreName.value,
+                title: genreName.val(),
                 dateOfAdd: new Date().getTime()
             }).then(function() {
-                genreName.value = "";
+                genreName.val(null);
 
-                black.style.display = "none";
-                loadBar.style.display = "none";
+                loadBar.css("display", "none");
                 
                 displayMessage("Жанр додано", 0);  
             });
         } else {
-            black.style.display = "none";
-            loadBar.style.display = "none";
+            loadBar.css("display", "none");
 
             displayMessage("Заповнiть усi поля", 1);
         }

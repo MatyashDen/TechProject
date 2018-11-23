@@ -20,7 +20,7 @@
 
 	addImageBut.on("change", () => {
 		if (validFileType(addImageBut[0].files[0])) {
-			displayCropDiv(2 / 3);
+			displayCropDiv(1 / 1);
 		}
 	});
 
@@ -90,7 +90,7 @@
 
 		loadBar.css("display", "none");
 
-		displayMessage("Книгу додано", 0);
+		displayMessage("Письменника додано", 0);
 	}
 
 	function validFileType(file) {

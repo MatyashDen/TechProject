@@ -379,7 +379,7 @@ textarea
 }
 
  .cmn-button-big {
-    font-size: 2.7vw;
+    font-size: 2.5vw;
     padding: 1.5vw;
 }
 
@@ -428,8 +428,7 @@ textarea
 {
     position: relative;
 
-    width: 100%;
-    margin: auto;
+    width: 100%;;
     margin-bottom: 3vw;
     font-size: 2vw;
 }
@@ -465,7 +464,7 @@ textarea
 /* active state */
 .cmn-input:focus ~ .cmn-input-label,
 .cmn-input:valid ~ .cmn-input-label,
-[type='datetime-local']:invalid ~ .cmn-input-label
+[type='date']:invalid ~ .cmn-input-label
 {
     font-size: 1.3vw;
 

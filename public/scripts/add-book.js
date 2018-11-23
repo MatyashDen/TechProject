@@ -1,6 +1,8 @@
 {
 	let 
 		db = firebase.firestore(),
+		booksCol = db.collection("books"),
+		genresCol = db.collection("genres"),
 
 		image = document.getElementById("img"),
 
@@ -52,15 +54,15 @@
 			writersId.val() && genresId.val()) {
 			if (image.src.indexOf("/favicons/no-image.svg") == -1) {
 				let
-					key = db.collection("books").doc().id,
-					docRef = db.collection("books").doc(key);
+					key = booksCol.doc().id,
+					docRef = booksCol.doc(key);
 
 				docRef.set({
 					id: key,
 					pictureUrl: "",
 
 					title: title.val(),
-					amount: amount.val(),
+					amount: parseInt(amount.val()),
 					description: description.val(),
 
 					writersId: writersId.val(),
@@ -122,4 +124,13 @@
 
 		return false;
 	}
+/*
+	genresCol.onSnapshot(snapshot => {
+		snapshot.forEach(change => {
+			if (change.type == "removed") {
+				console.log(change.doc.id);
+				$("[value=" + change.doc.id + "]").remove();
+			}
+		});
+	});*/
 }

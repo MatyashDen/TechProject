@@ -44,10 +44,23 @@ app.get("/books", function(request, response) {
   response.render("pages/books");
 });
 
+// Writers page
 app.get("/writers", function(request, response) {
-  response.render("pages/writers");
+  let writersCol = db.collection("writers").orderBy("dateOfAdd", "desc");
+
+  writersCol.get()
+  .then(writersQuery => {
+    let writers = [];
+
+    writersQuery.forEach(doc => {
+      writers.push(doc.data());
+    });
+
+    response.render("pages/writers", {writers: writers});
+  });
 });
 
+// Genres page
 app.get("/genres", function(request, response) {
   let genresCol = db.collection("genres").orderBy("dateOfAdd", "desc");
 
@@ -78,13 +91,22 @@ app.get("/genres/change/:genreId", function(request, response) {
 app.get("/add-book", function(request, response) {
   db.collection("genres").orderBy("dateOfAdd", "desc").get()
   .then(function(genresQuery) {
-    let genres = [];
+    db.collection("writers").orderBy("dateOfAdd", "desc").get()
+    .then(function(writersQuery) {
+      let 
+        genres = [],
+        writers = [];
 
-    genresQuery.forEach(function(doc) {
-      genres.push(doc.data());
+      genresQuery.forEach(function(doc) {
+        genres.push(doc.data());
+      });
+
+      writersQuery.forEach(function(doc) {
+        writers.push(doc.data());
+      });
+
+      response.render("pages/add-book", {writers: writers, genres: genres});  
     });
-
-    response.render("pages/add-book", {writers: [], genres: genres});  
   });
 });
 

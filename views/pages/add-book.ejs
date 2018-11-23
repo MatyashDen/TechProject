@@ -27,7 +27,7 @@
         <div class="dish-picture">   
           <img src="/favicons/no-image.svg" id="img">
           <input type="file" accept="image/*" id="add-image" style="display: none;"> 
-          <button class="cmn-button  cmn-button-center" id="dish-select-photo" onclick="document.getElementById('add-image').click()">Виберiть фото</button>
+          <button class="cmn-button  cmn-button-center" id="dish-select-photo" onclick="document.getElementById('add-image').click()">Виберiть обкладинку</button>
         </div>
 
         <div class="dish-info">
@@ -50,15 +50,14 @@
       
       <div class="flex-wrapper" id="flex-kitchen">
         <div class="cmn-category-block">
-          <select id="writers" class="cmn-dropdown" name="kitchens" required>
-            <option value="">Виберiть авторiв</option>
+          <select id="writers" class="cmn-dropdown" name="writers" multiple required>
             <% writers.forEach(function(item) { %>
-              <option value="<%= item.id %>"><%= item.title %></option>
+              <option value="<%= item.id %>"><%= item.name %></option>
             <% }); %>
           </select>
         </div>
         <div class="cmn-category-block">
-          <select id="genres" class="cmn-dropdown" name="categories" multiple required>
+          <select id="genres" class="cmn-dropdown" name="genres" multiple required>
             <% genres.forEach(function(item) { %>
              <option value="<%= item.id %>"><%= item.title %></option>
             <% }); %>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <style>
+      #nav-writers {
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+    <link rel='stylesheet' href='/stylesheets/writers.css' type='text/css'>
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <% if (writers.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає письменникiв
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <% writers.forEach(function(item) { 
+          let pictureUrl = "/favicons/no-image.svg";
+          if (item.pictureUrl !== "")
+              pictureUrl = item.pictureUrl;
+        %>
+          <div class="cmn-category-block">
+            <div class="cmn-category-content">
+              <div class="cmn-headline"><%= item.name %></div>
+              <div class="flex-wrapper">
+                <img class="kitchen-img" src="<%= pictureUrl %>">
+               
+                <div class="middle-block">
+                  <div class="cmn-subtitle">
+                    <b>Рiк народження:</b> <%= item.bornDate %>
+                  </div>
+                  <div class="cmn-subtitle">
+                    <b>Рiк смертi:</b> <%= item.deathDate %>
+                  </div>
+                </div>
+                <div class="dish-button-block">
+                  <div class="cmn-category-content-buttons">
+                    <a href="/writers/change/<%= item.id %>" class="cmn-button">Змінити</a>
+                    <a href="/writers/remove/<%= item.id %>" class="cmn-button cmn-delete-button">Видалити</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cmn-category-content">
+              <div class="kitchen-left2">
+                <h5><b>Опис:</b> <%= item.description %></h5>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %> 
+
+    <script src="/scripts/genres.js"></script>
+  </body>
+</html>

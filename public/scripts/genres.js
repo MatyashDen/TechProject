@@ -6,14 +6,15 @@
         loadBar = $("#load-bar");
 
 	function removeGenre(genreId) {
-		//loadBar.css("display", "block");
+		loadBar.css("display", "block");
 
 		genresCol.doc(genreId).delete()
 		.then(function() {
-			//loadBar.css("display", "none");
+			$("[data-id=" + genreId + "]").remove();
+			loadBar.css("display", "none");
 		});
 	}
-
+	/*
 	genresCol.onSnapshot(snapshot => {
 		let changes = snapshot.docChanges();
 		
@@ -22,5 +23,5 @@
         		$("[data-id=" + change.doc.id + "]").remove();
 			}
 		});
-	});
+	});*/
 }

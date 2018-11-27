@@ -188,16 +188,6 @@ textarea
     content: '.';
 }
 
-.cmn-category-content-buttons
-{
-    position: absolute;
-    top: 50%;
-    right: 0;
-
-    transform: translateY(-50%);
-}
-
-
 /* textarea */
 .cmn-textarea
 {
@@ -205,19 +195,19 @@ textarea
 
     width: 100%;
     height: 14vw;
-    padding: 10px 12px;
+    padding: 1vw 1.1vw;
 
     resize: none;
 }
 
 .cmn-textarea:hover
 {
-    box-shadow: inset 0 0 5px #00000078;
+    box-shadow: inset 0 0 0.5vw #00000078;
 }
 
 .cmn-textarea:focus
 {
-    box-shadow: inset 0 0 5px blue;
+    box-shadow: inset 0 0 0.5vw blue;
 }
 
 /* dropdown */
@@ -252,25 +242,31 @@ textarea
 .select2-container--default .select2-results>.select2-results__options {
     max-height: 300px !important;
 }
+
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     font-size: 1.45vw;
 }
+
 .select2-container--default .select2-selection--multiple {
    font-size: 1.45vw;
- }
+}
+
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
     height: 40px;
     line-height: 40px;
 }
+
 .select2-container--default .select2-search--inline .select2-search__field {
     height: 40px;
     line-height: 50px;
 }
+
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     height: 40px;
     font-size: 1.6vw;
     line-height: 40px;
 }
+
 /* BUTTON ========================== */
 .cmn-button
 {
@@ -280,6 +276,7 @@ textarea
     display: inline-block;
     overflow: hidden;
     padding: 0.4vw 1vw;
+    width: 10vw;
     
     cursor: pointer;
 
@@ -292,6 +289,12 @@ textarea
     border: 0.2vw solid #0bce0c;
     border-radius: 4vw;
     background: #0bce0c;
+}
+
+.cmn-category-content-buttons {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
 }
 
 .cmn-category-content-buttons .cmn-button {
@@ -379,6 +382,7 @@ textarea
 }
 
  .cmn-button-big {
+    width: auto;
     font-size: 2.5vw;
     padding: 1.5vw;
 }

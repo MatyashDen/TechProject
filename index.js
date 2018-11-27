@@ -60,6 +60,17 @@ app.get("/writers", function(request, response) {
   });
 });
 
+app.get("/writers/change/:writerId", function(request, response) {
+  let writersCol = db.collection("writers");
+
+  writersCol.doc(request.params.writerId).get()
+  .then(function (doc) {
+    if (doc.exists) {
+      response.render("pages/change-writer", {writer: doc.data()});
+    }
+  });
+});
+
 // Genres page
 app.get("/genres", function(request, response) {
   let genresCol = db.collection("genres").orderBy("dateOfAdd", "desc");

@@ -13,8 +13,7 @@
 		addWriterBut = $("#add-writer"),
 
 		black = $(".black").eq(0),
-		loadBar = $("#load-bar"),
-		$select = [];
+		loadBar = $("#load-bar");
 
 	addWriterBut.on("click", addWriter);
 
@@ -27,11 +26,11 @@
 	function addWriter() {
 		loadBar.css("display", "block");
 
-		if (name.val() && bornDate.val() && deathDate.val() && description.val()) {
+		if (name.val() && bornDate.val() && description.val()) {
 			if (image.src.indexOf("/favicons/no-image.svg") == -1) {
 				let
 					millisecondsFrom = Date.parse(bornDate.val()),
-					millisecondsEnd = Date.parse(deathDate.val()),
+					millisecondsEnd = deathDate.val() ? Date.parse(deathDate.val()) : millisecondsFrom + 1,
 					currentTime = new Date().getTime(),
 
 					key = db.collection("writers").doc().id,
@@ -44,7 +43,7 @@
 
 						name: name.val(),
 						bornDate: bornDate.val(),
-						deathDate: deathDate.val(),
+						deathDate: deathDate.val() || '',
 						description: description.val(),
 
 						dateOfAdd: new Date().getTime(),

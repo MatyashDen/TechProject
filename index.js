@@ -166,6 +166,7 @@ app.get("/genres/change/:genreId", function(request, response) {
 app.get("/add-book", function(request, response) {
   db.collection("genres").orderBy("dateOfAdd", "desc").get()
   .then(function(genresQuery) {
+
     db.collection("writers").orderBy("dateOfAdd", "desc").get()
     .then(function(writersQuery) {
       let 
@@ -181,6 +182,64 @@ app.get("/add-book", function(request, response) {
       });
 
       response.render("pages/add-book", {writers: writers, genres: genres});  
+    });
+  });
+});
+
+app.get("/books/change/:bookId", function(request, response) {
+  let 
+    booksCol = db.collection("books"),
+    writersCol = db.collection("writers"),
+    genresCol = db.collection("genres");
+
+  genresCol.orderBy("dateOfAdd", "desc").get()
+  .then(function(genresQuery) {
+
+    writersCol.orderBy("dateOfAdd", "desc").get()
+    .then(function(writersQuery) {
+      let 
+        allGenres = [],
+        allWriters = [];
+
+      genresQuery.forEach(function(doc) {
+        allGenres.push(doc.data());
+      });
+
+      writersQuery.forEach(function(doc) {
+        allWriters.push(doc.data());
+      });
+
+      booksCol.doc(request.params.bookId).get()
+      .then(function(doc) {
+        let 
+          book = doc.data(),
+          writersId = doc.data().writersId,
+          genresId = doc.data().genresId,
+          bookWriters = [],
+          bookGenres = [],
+          barrier = new CountdownLatch(writersId.length + genresId.length);
+
+        writersId.forEach(function(id, index2) {
+          writersCol.doc(id).get()
+          .then(function(doc2) {
+            bookWriters[index2] = doc2.data();
+            barrier.countDown();
+          });
+        });
+
+        genresId.forEach(function(id, index2) {
+          genresCol.doc(id).get()
+          .then(function(doc2) {
+            bookGenres[index2] = doc2.data();
+            barrier.countDown();
+          });
+        });
+
+        barrier.await(function() { 
+          response.render("pages/change-book", {book: book, allGenres: allGenres, 
+            allWriters: allWriters, bookGenres: bookGenres, bookWriters: bookWriters});
+        });
+      });
     });
   });
 });

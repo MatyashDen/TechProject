@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+    <link rel="stylesheet" href="/stylesheets/cropper.css">
+    <link rel="stylesheet" href="/stylesheets/crop-page.css">
+
+    <link rel='stylesheet' href='/stylesheets/add-book.css' type='text/css'>
+    <link rel="stylesheet" href="/stylesheets/select2.min.css">
+    <style>
+      #nav-books {
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/crop-image.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <% 
+      let pictureUrl = "/favicons/no-image.svg";
+        if (book.pictureUrl !== "")
+          pictureUrl = book.pictureUrl;
+    %>
+    <div class="cmn-row">
+      <div class="cmn-head">
+        <span class="cmn-headline">Редагувати книгу</span>
+      </div>
+      <div class="flex-wrapper start">
+        <div class="dish-picture">   
+          <img src="<%= pictureUrl %>" id="img">
+          <input type="file" accept="image/*" id="add-image" style="display: none;"> 
+          <button class="cmn-button  cmn-button-center" id="dish-select-photo" onclick="document.getElementById('add-image').click()">Виберiть обкладинку</button>
+        </div>
+
+        <div class="dish-info">
+          <div class="flex-wrapper">
+            <div class="cmn-input-group w45">
+              <input type="text" class="cmn-input" id="title" value="<%= book.title %>" autocomplete="off" required>
+              <label class="cmn-input-label">Назва книги</label>
+              <span class="cmn-input-highlight"></span>
+            </div>
+            <div class="cmn-input-group w45">
+              <input type="number" step="any" class="cmn-input" id="amount" value="<%= book.amount %>" autocomplete="off" required>
+              <label class="cmn-input-label">Кiлькiсть у бiблiотецi</label>
+              <span class="cmn-input-highlight"></span>
+            </div>
+          </div>
+          <div class="dish-title cmn-text">Опис</div>
+          <textarea class="cmn-textarea" id="description" required><%= book.description %></textarea>
+        </div>
+      </div>
+      
+      <div class="flex-wrapper" id="flex-kitchen">
+        <div class="cmn-category-block">
+          <select id="writers" class="cmn-dropdown" name="writers" multiple required>
+            <% bookWriters.forEach(function(writer) { %>
+              <option selected value="<%= writer.id %>"><%= writer.name %></option>
+            <% }); 
+              allWriters.forEach(function(writer) { 
+                let b = 0;
+                for (let i = 0; i < bookWriters.length; ++i) {
+                  if (writer.id == bookWriters[i].id) {
+                    b = 1;
+                    break;
+                  }
+                }
+
+                if (!b) { %>
+                  <option value="<%= writer.id %>"><%= writer.name %></option>
+                <% }
+              }); %>
+          </select>
+        </div>
+        <div class="cmn-category-block">
+          <select id="genres" class="cmn-dropdown" name="genres" multiple required>
+            <% bookGenres.forEach(function(genre) { %>
+             <option selected value="<%= genre.id %>"><%= genre.title %></option>
+            <% }); 
+              allGenres.forEach(function(genre) { 
+                let b = 0;
+                for (let i = 0; i < bookGenres.length; ++i) {
+                  if (genre.id == bookGenres[i].id) {
+                    b = 1;
+                    break;
+                  }
+                }
+
+                if (!b) { %>
+                  <option value="<%= genre.id %>"><%= genre.title %></option>
+                <% }
+              }); %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="cmn-popup cmn-ppp-error" id="message-box">
+      <span class="cmn-text"></span>
+    </div>
+    <button class="cmn-button cmn-button-center cmn-button-big" id="change-book">Редагувати</button>
+
+    <script src="/scripts/cropper.js"></script>
+    <script src="/scripts/message.js"></script>
+    <script src="/scripts/crop-image.js"></script>
+    <script src="/scripts/select2.full.min.js"></script>
+    <script src="/scripts/change-book.js"></script>
+  </body>
+</html>

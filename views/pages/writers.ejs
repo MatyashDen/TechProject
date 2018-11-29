@@ -24,8 +24,14 @@
       <div class="cmn-row">
         <% writers.forEach(function(item) { 
           let pictureUrl = "/favicons/no-image.svg";
+
           if (item.pictureUrl !== "")
               pictureUrl = item.pictureUrl;
+
+          description = item.description.substr(0, 530);
+
+          if (description != item.description)
+            description += "...";
         %>
           <div class="cmn-category-block" data-id="<%= item.id %>">
             <div class="cmn-category-content">
@@ -54,7 +60,7 @@
                
                 <div class="middle-block">
                   <div class="cmn-subtitle">
-                    <b>Бiографiя:</b> <%= item.description %>
+                    <b>Бiографiя:</b> <%= description %>
                   </div>
                   <div class="cmn-category-content-buttons">
                     <button onclick="window.location.href='/writers/change/<%= item.id %>'" class="cmn-button">Редагувати</button>

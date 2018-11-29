@@ -39,11 +39,14 @@
 
           description = description.substr(0, 325);
 
+          if (book.pictureUrl !== "") {
+            pictureUrl = book.pictureUrl;
+
+            description = book.description.substr(0, 680);
+          }
+
           if (description != book.description)
             description += "...";
-
-          if (book.pictureUrl !== "")
-              pictureUrl = book.pictureUrl;
         %>
           <div class="cmn-category-block" data-id="<%= book.id %>">
             <div class="cmn-category-content">

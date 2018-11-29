@@ -24,6 +24,23 @@ admin.initializeApp({
   databaseURL: "https://tui-project-a3956.firebaseio.com"
 });*/
 
+var CountdownLatch = function (limit) {
+  this.limit = limit;
+  this.count = 0;
+  this.waitBlock = function () {};
+};
+
+CountdownLatch.prototype.countDown = function () {
+  this.count = this.count + 1;
+  if (this.limit <= this.count) {
+    return this.waitBlock();
+  }
+};
+
+CountdownLatch.prototype.await = function(callback) {
+  this.waitBlock = callback;
+}
+
 var db = firebase.firestore();
 
 app.set('port', (process.env.PORT || 5000));
@@ -41,7 +58,54 @@ app.get('/', function(request, response) {
 });
 
 app.get("/books", function(request, response) {
-  response.render("pages/books");
+  let 
+    booksCol = db.collection("books").orderBy("dateOfAdd", "desc"),
+    writersCol = db.collection("writers"),
+    genresCol = db.collection("genres");
+
+  booksCol.get()
+  .then(booksQuery => {
+    let 
+      books = [],
+      barrier = new CountdownLatch(booksQuery.size);
+
+    booksQuery.docs.forEach(function(doc, index) {
+      let 
+        writersId = doc.data().writersId,
+        genresId = doc.data().genresId,
+        barrier2 = new CountdownLatch(writersId.length + genresId.length);
+
+      books[index] = doc.data();
+
+      books[index].writers = [];
+      books[index].genres = [];
+
+      writersId.forEach(function(id, index2) {
+        writersCol.doc(id).get()
+        .then(function(doc2) {
+          books[index].writers[index2] = doc2.data().name;
+          barrier2.countDown();
+        });
+      });
+
+      genresId.forEach(function(id, index2) {
+        genresCol.doc(id).get()
+        .then(function(doc2) {
+          books[index].genres[index2] = doc2.data().title;
+          barrier2.countDown();
+        });
+      });
+
+      barrier2.await(function() {
+        barrier.countDown();
+      });
+    });
+
+
+    barrier.await(function() {
+      response.render("pages/books", {books: books});
+    });
+  });
 });
 
 // Writers page

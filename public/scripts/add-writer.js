@@ -27,27 +27,27 @@
 		loadBar.css("display", "block");
 
 		if (name.val() && bornDate.val() && description.val()) {
-			if (image.src.indexOf("/favicons/no-image.svg") == -1) {
-				let
-					millisecondsFrom = Date.parse(bornDate.val()),
-					millisecondsEnd = deathDate.val() ? Date.parse(deathDate.val()) : millisecondsFrom + 1,
-					currentTime = new Date().getTime(),
+			let
+				millisecondsFrom = Date.parse(bornDate.val()),
+				millisecondsEnd = deathDate.val() ? Date.parse(deathDate.val()) : millisecondsFrom + 1,
+				currentTime = new Date().getTime(),
 
-					key = db.collection("writers").doc().id,
-					docRef = db.collection("writers").doc(key);
+				key = db.collection("writers").doc().id,
+				docRef = db.collection("writers").doc(key);
 
-				if (millisecondsFrom < millisecondsEnd && millisecondsEnd < currentTime) {
-					docRef.set({
-						id: key,
-						pictureUrl: "",
+			if (millisecondsFrom < millisecondsEnd && millisecondsEnd < currentTime) {
+				docRef.set({
+					id: key,
+					pictureUrl: "",
 
-						name: name.val(),
-						bornDate: bornDate.val(),
-						deathDate: deathDate.val() || '',
-						description: description.val(),
+					name: name.val(),
+					bornDate: bornDate.val(),
+					deathDate: deathDate.val() || '',
+					description: description.val(),
 
-						dateOfAdd: new Date().getTime(),
-					}).then(function() {
+					dateOfAdd: new Date().getTime(),
+				}).then(function() {
+					if (addImageBut[0].files[0] != undefined) {
 						let file = dataURLtoFile(image.src, 'filename.png');
 
 						firebase.storage().ref("writers-images/" + key).put(file)
@@ -61,16 +61,13 @@
 								});
 							});
 						});
-					});
-				} else {
-					loadBar.css("display", "none");
-
-                	displayMessage("Виберiть правильно дати", 1);
-				}
+					} else
+						refresh();
+				});
 			} else {
 				loadBar.css("display", "none");
 
-                displayMessage("Виберiть фото автора", 1);
+            	displayMessage("Виберiть правильно дати", 1);
 			}
 		} else {
 			loadBar.css("display", "none");

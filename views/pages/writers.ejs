@@ -40,7 +40,8 @@
                 deathMonth = monthes[parseInt(deathDate.substr(deathDate.indexOf("-") + 1, 2)) - 1],
                 deathDay = parseInt(deathDate.substr(deathDate.lastIndexOf("-") + 1));
               %>
-              <div class="cmn-headline"><%= item.name %> 
+              <div class="cmn-headline">
+                <%= item.name %> 
                 (<%= bornDay %> <%= bornMonth %> <%= bornYear %> -
                 <% if (deathDate == '') { %>
                   Нашi днi)
@@ -53,10 +54,10 @@
                
                 <div class="middle-block">
                   <div class="cmn-subtitle">
-                    <h5><b>Бiографiя:</b> <%= item.description %></h5>
+                    <b>Бiографiя:</b> <%= item.description %>
                   </div>
                   <div class="cmn-category-content-buttons">
-                    <button onclick="window.location.href='/writers/change/<%= item.id %>'" class="cmn-button">Змінити</button>
+                    <button onclick="window.location.href='/writers/change/<%= item.id %>'" class="cmn-button">Редагувати</button>
                     <button onclick='if (confirm("Ви точно хочете видалити автора <%= item.name %>?"))removeWriter("<%= item.id %>")' class="cmn-button cmn-delete-button">Видалити</button>
                   </div>
                 </div>

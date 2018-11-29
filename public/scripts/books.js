@@ -2,21 +2,21 @@
 	let 
 		db = firebase.firestore(),
 		storage = firebase.storage(),
-		writersCol = db.collection("writers"),
+		booksCol = db.collection("books"),
 
         loadBar = $("#load-bar");
 
-	function removeWriter(writerId) {
+	function removeBook(bookId) {
 		loadBar.css("display", "block");
 
-		writersCol.doc(writerId).delete()
+		booksCol.doc(bookId).delete()
 		.then(function() {
-			storage.ref("writers-images/" + writerId).delete()
+			storage.ref("books-images/" + bookId).delete()
 			.then(() => {
-				$("[data-id=" + writerId + "]").remove();
+				$("[data-id=" + bookId + "]").remove();
 				loadBar.css("display", "none");
 			}).catch(function() {
-				$("[data-id=" + writerId + "]").remove();
+				$("[data-id=" + bookId + "]").remove();
 				loadBar.css("display", "none");
 			});
 		});

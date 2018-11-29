@@ -26,7 +26,7 @@
                 <div class="cmn-category-title"><%= item.title %></div>
               </div>
               <div class="cmn-category-content-buttons">
-                <button onclick="window.location.href='/genres/change/<%= item.id %>'" class="cmn-button">Змінити</button>
+                <button onclick="window.location.href='/genres/change/<%= item.id %>'" class="cmn-button">Редагувати</button>
                 <button onclick='if (confirm("Ви точно хочете видалити жанр <%= item.title %>?"))removeGenre("<%= item.id %>")' class="cmn-button cmn-delete-button">Видалити</button>
               </div>
             </div>

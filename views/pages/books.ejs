@@ -3,23 +3,78 @@
   <head>
     <% include ../partials/header.ejs %>
     <link rel="stylesheet" href="/stylesheets/load-page.css">
+    <link rel='stylesheet' href='/stylesheets/writers.css' type='text/css'>
     <style>
       #nav-books {
         color: white;
         font-weight: 600;
       }
+
+      .kitchen-img {
+        border-radius: 0;
+      }
+
+      .cmn-category-content-buttons {
+        top: auto;
+        transform: translateY(-100%);
+      }
     </style>
   </head>
   <body>
-    <% include ../partials/load-page.ejs %>
     <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
 
-    <div class="cmn-row">
-      
-    </div>
-    <div class="cmn-popup cmn-ppp-error" id="message-box">
-      <span id='sign-in-message' class="cmn-text"></span>
-    </div>
-    <script src="/scripts/message.js"></script>
+    <% if (books.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає книг
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <% books.forEach(function(book) { 
+          let 
+            pictureUrl = "/favicons/no-image.svg",
+            writers = book.writers.join(", "),
+            genres = book.genres.join(", "),
+            description = book.description;
+
+          description = description.substr(0, 325);
+
+          if (description != book.description)
+            description += "...";
+
+          if (book.pictureUrl !== "")
+              pictureUrl = book.pictureUrl;
+        %>
+          <div class="cmn-category-block" data-id="<%= book.id %>">
+            <div class="cmn-category-content">
+              <div class="cmn-headline"><%= book.title %></div>
+              <div class="flex-wrapper">
+                <img class="kitchen-img" src="<%= pictureUrl %>">
+               
+                <div class="middle-block">
+                  <div class="cmn-subtitle">
+                    <b>Письменники:</b> 
+                    <%= writers %>
+                  </div>
+                  <div class="cmn-subtitle">
+                    <b>Жанри:</b> 
+                    <%= genres %>
+                  </div>
+                  <div class="cmn-subtitle">
+                    <b>Опис:</b> <%= description %>
+                  </div>
+                </div>
+              </div>
+              <div class="cmn-category-content-buttons">
+                <button onclick="window.location.href='/books/change/<%= book.id %>'" class="cmn-button">Редагувати</button>
+                <button onclick='if (confirm("Ви точно хочете видалити книгу <%= book.title %>?"))removeBook("<%= book.id %>")' class="cmn-button cmn-delete-button">Видалити</button>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %> 
+
+    <script src="/scripts/books.js"></script>
   </body>
 </html>

@@ -40,7 +40,9 @@
 
 .cmn-headline
 {
-    font-size: 2.2vw;
+    font-size: 1.9vw;
+    color: #333;
+    font-weight: 600;
 }
 
 .cmn-subtitle

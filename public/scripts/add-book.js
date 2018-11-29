@@ -52,29 +52,29 @@
 
 		if (title.val() && amount.val() && description.val() && 
 			writersId.val() && genresId.val()) {
-			if (image.src.indexOf("/favicons/no-image.svg") == -1) {
-				let
-					key = booksCol.doc().id,
-					docRef = booksCol.doc(key);
+			let
+				key = booksCol.doc().id,
+				docRef = booksCol.doc(key);
 
-				docRef.set({
-					id: key,
-					pictureUrl: "",
+			docRef.set({
+				id: key,
+				pictureUrl: "",
 
-					title: title.val(),
-					amount: parseInt(amount.val()),
-					description: description.val(),
+				title: title.val(),
+				amount: parseInt(amount.val()),
+				description: description.val(),
 
-					writersId: writersId.val(),
-					genresId: genresId.val(),
+				writersId: writersId.val(),
+				genresId: genresId.val(),
 
-					dateOfAdd: new Date().getTime(),
-				}).then(function() {
+				dateOfAdd: new Date().getTime(),
+			}).then(function() {
+				if (addImageBut[0].files[0] != undefined) {
 					let file = dataURLtoFile(image.src, 'filename.png');
 
-					firebase.storage().ref("book-images/" + key).put(file)
+					firebase.storage().ref("books-images/" + key).put(file)
 					.then(function() {
-						firebase.storage().ref("book-images/" + key).getDownloadURL()
+						firebase.storage().ref("books-images/" + key).getDownloadURL()
 						.then(function(url) {
 							docRef.update({
 								pictureUrl: url
@@ -83,12 +83,9 @@
 							});
 						});
 					});
-				});
-			} else {
-				loadBar.css("display", "none");
-
-                displayMessage("Виберiть фото книги", 1);
-			}
+				} else 
+					refresh();
+			});
 		} else {
 			loadBar.css("display", "none");
 

@@ -7,13 +7,11 @@
 		userEmail = document.getElementById("sign-in-email"),
 		userPassword = document.getElementById("sign-in-password"),
 
-		black = document.getElementById("black"),
 		loadBar = document.getElementById("load-bar");
 
 	signInBut.onclick = signIn;
 
 	function signIn() {
-		black.style.display = "block";
 		loadBar.style.display = "block";
 
 		firebase.auth().signInWithEmailAndPassword(userEmail.value, userPassword.value)
@@ -25,7 +23,6 @@
 				}
 
 				else {
-					black.style.display = "none";
 					loadBar.style.display = "none";
 
 		      		displayMessage("Користувач не є адміністратором", 1);
@@ -36,7 +33,6 @@
 				errorCode = error.code,
 				errorMessage = error.message;
 				
-			black.style.display = "none";
 			loadBar.style.display = "none";
 
 			displayMessage("Невірний логін або пароль", 1);

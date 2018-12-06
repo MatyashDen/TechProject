@@ -93,7 +93,7 @@ textarea
     padding: 1vw;
     padding-top: 0;
 
-    border-bottom: 0.1vw solid black;
+    border-bottom: 0.15vw solid black;
 }
 
 .cmn-headline
@@ -156,6 +156,10 @@ textarea
 .cmn-category-title
 {
     font-size: 2vw;
+
+    margin-right: 2vw;
+
+    display: inline;
 }
 
 .cmn-category-content
@@ -165,7 +169,7 @@ textarea
 
 .cmn-category-content-text
 {
-    display: block;
+    display: inline;
 
     width: 80%;
 }
@@ -184,6 +188,15 @@ textarea
     height: 0;
 
     content: '.';
+}
+
+.cmn-category-content-buttons {
+    position: absolute;
+    right: 0;
+}
+
+.cmn-category-content-buttons .cmn-button {
+    margin-right: 1.5vw;
 }
 
 /* textarea */
@@ -287,16 +300,6 @@ textarea
     border: 0.2vw solid #0bce0c;
     border-radius: 4vw;
     background: #0bce0c;
-}
-
-.cmn-category-content-buttons {
-    position: absolute;
-    right: 0;
-    transform: translateY(-50%);
-}
-
-.cmn-category-content-buttons .cmn-button {
-    margin-right: 1.5vw;
 }
 
 .cmn-button:after

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <style>
+      #nav-journal {
+        color: white;
+        font-weight: 600;
+      }
+      .cmn-button {
+        left: 1.5vw;
+      }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <% if (archive.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає принесених книг
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <div class="cmn-head">
+          <span class="cmn-headline">Архiв принесених книг</span>
+        </div>
+        <% archive.forEach(function(item) { %>
+          <div class="cmn-category-block">
+            <div class="cmn-category-content">
+              <div class="cmn-category-content-text">
+                <div class="cmn-category-title"><%= item.userName %></div>
+                <div class="cmn-category-title"><%= item.bookTitle %></div>
+                <div class="cmn-category-title">
+                  <%  let 
+                        startDate = Date.parse(item.dateOfAccept),
+                        endDate = Date.parse(item.dateOfEnd);
+
+                      let 
+                        deltaSeconds = (endDate - startDate) / 1000,
+                        deltaHours = deltaSeconds / 3600,
+                        days = parseInt(deltaHours / 24); %>
+
+                      <%= item.dateOfAccept.replace(/-/g, " ") %> - 
+                      <%= item.dateOfEnd.replace(/-/g, " ") %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %> 
+
+  </body>
+</html>

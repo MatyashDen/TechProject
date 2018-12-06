@@ -52,24 +52,24 @@
 
 		if (title.val() && amount.val() && description.val() && 
 			writersId.val() && genresId.val()) {
-			let
-				key = booksCol.doc().id,
-				docRef = booksCol.doc(key);
+			if (addImageBut[0].files[0] != undefined) {
+				let
+					key = booksCol.doc().id,
+					docRef = booksCol.doc(key);
 
-			docRef.set({
-				id: key,
-				pictureUrl: "",
+				docRef.set({
+					id: key,
+					pictureUrl: "",
 
-				title: title.val(),
-				amount: parseInt(amount.val()),
-				description: description.val(),
+					title: title.val(),
+					amount: parseInt(amount.val()),
+					description: description.val(),
 
-				writersId: writersId.val(),
-				genresId: genresId.val(),
+					writersId: writersId.val(),
+					genresId: genresId.val(),
 
-				dateOfAdd: new Date().getTime(),
-			}).then(function() {
-				if (addImageBut[0].files[0] != undefined) {
+					dateOfAdd: new Date().getTime(),
+				}).then(function() {
 					let file = dataURLtoFile(image.src, 'filename.png');
 
 					firebase.storage().ref("books-images/" + key).put(file)
@@ -83,9 +83,12 @@
 							});
 						});
 					});
-				} else 
-					refresh();
-			});
+				});
+			} else {
+				loadBar.css("display", "none");
+
+				displayMessage("Виберiть обкладинку", 1);
+			}
 		} else {
 			loadBar.css("display", "none");
 

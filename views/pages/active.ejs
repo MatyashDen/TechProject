@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <style>
+      #nav-journal {
+        color: white;
+        font-weight: 600;
+      }
+      .cmn-button {
+        left: 1.5vw;
+      }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <% if (active.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає активних книг
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <div class="cmn-head">
+          <span class="cmn-headline">Активнi заявки</span>
+        </div>
+        <% active.forEach(function(item) { %>
+          <div class="cmn-category-block" data-id="<%= item.id %>">
+            <div class="cmn-category-content">
+              <div class="cmn-category-content-buttons">
+                <button onclick="finish('<%= item.id %>')" class="cmn-button cmn-delete-button">Завершити</button>
+              </div>
+              <div class="cmn-category-content-text">
+                <div class="cmn-category-title"><%= item.userName %></div>
+                <div class="cmn-category-title"><%= item.bookTitle %></div>
+                <div class="cmn-category-title">
+                  <%  let 
+                        startDate = Date.parse(item.dateOfAccept),
+                        curDate = new Date().toISOString().slice(0, 10);
+
+                      curDate = Date.parse(curDate);
+
+                      let 
+                        deltaSeconds = (curDate - startDate) / 1000,
+                        deltaHours = deltaSeconds / 3600,
+                        days = parseInt(deltaHours / 24); %>
+                    
+                      <%  if (days % 10 >= 5 || days % 100 >= 5 && days % 100 <= 20 || !(days % 10)) { %>
+                            Пройшло <%= days %> днiв
+                      <%  } else if (days % 10 == 1) { %>
+                            Пройшов <%= days %> день
+                      <%  } else { %>
+                            Пройшло <%= days %> днi
+                      <%  } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+      <div class="cmn-popup cmn-ppp-error" id="message-box">
+        <span class="cmn-text"></span>
+      </div>
+    <% } %> 
+    
+    <script src="/scripts/message.js"></script>
+    <script src="/scripts/active.js"></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <style>
+      #nav-journal {
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+    <link rel='stylesheet' href='/stylesheets/add-book.css' type='text/css'>
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <% if (requests.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає нових заявок на книги
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <div class="cmn-head">
+          <span class="cmn-headline">Заявки на книги</span>
+        </div>
+        <% requests.forEach(function(item) { %>
+          <div class="cmn-category-block" data-id="<%= item.id %>">
+            <div class="cmn-category-content">
+              <div class="cmn-category-content-buttons">
+                <button onclick="acceptRequest('<%= item.id %>', '<%= item.bookId %>')" class="cmn-button">Прийняти</button>
+                <button onclick="declineRequest('<%= item.id %>')" class="cmn-button cmn-delete-button">Вiдхилити</button>
+              </div>
+              <div class="cmn-category-content-text">
+                <div class="cmn-category-title"><%= item.userName %></div>
+                <div class="cmn-category-title"><%= item.bookTitle %></div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+      <div class="cmn-popup cmn-ppp-error" id="message-box">
+        <span class="cmn-text"></span>
+      </div>
+    <% } %> 
+      
+    <script src="/scripts/message.js"></script>
+    <script src="/scripts/requests.js"></script>
+  </body>
+</html>

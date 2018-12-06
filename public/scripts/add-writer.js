@@ -45,7 +45,7 @@
 					deathDate: deathDate.val() || '',
 					description: description.val(),
 
-					dateOfAdd: new Date().getTime(),
+					dateOfAdd: new Date().getTime()
 				}).then(function() {
 					if (addImageBut[0].files[0] != undefined) {
 						let file = dataURLtoFile(image.src, 'filename.png');

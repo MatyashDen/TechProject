@@ -273,7 +273,7 @@ app.get("/active", function(request, response) {
     usersCol = db.collection("users"),
     booksCol = db.collection("books");
 
-  journalCol.where("status", "==", "active").orderBy("dateOfAdd", "desc").get()
+  journalCol.where("status", "==", "active").orderBy("dateOfAccept", "desc").get()
   .then(function(activeQuery) {
     let 
       active = [],
@@ -284,6 +284,7 @@ app.get("/active", function(request, response) {
 
       active[index].id = doc.data().id;
       active[index].dateOfAccept = doc.data().dateOfAccept;
+      active[index].bookId = doc.data().bookId;
 
       usersCol.doc(doc.data().userId).get()
       .then(function(doc2) {
@@ -316,7 +317,7 @@ app.get("/archive", function(request, response) {
     usersCol = db.collection("users"),
     booksCol = db.collection("books");
 
-  journalCol.where("status", "==", "old").orderBy("dateOfAdd", "desc").get()
+  journalCol.where("status", "==", "old").orderBy("dateOfEnd", "desc").get()
   .then(function(archiveQuery) {
     let 
       archive = [],

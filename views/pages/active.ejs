@@ -18,7 +18,7 @@
     <% include ../partials/load-page.ejs %>
     <% if (active.length == 0) { %>
       <div class="cmn-no-tables">
-        Немає активних книг
+        Немає активних заявок
       </div>
     <% } else { %>
       <div class="cmn-row">
@@ -29,7 +29,7 @@
           <div class="cmn-category-block" data-id="<%= item.id %>">
             <div class="cmn-category-content">
               <div class="cmn-category-content-buttons">
-                <button onclick="finish('<%= item.id %>')" class="cmn-button cmn-delete-button">Завершити</button>
+                <button onclick="finish('<%= item.id %>', '<%= item.bookId %>')" class="cmn-button cmn-delete-button">Завершити</button>
               </div>
               <div class="cmn-category-content-text">
                 <div class="cmn-category-title"><%= item.userName %></div>

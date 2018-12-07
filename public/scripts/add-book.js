@@ -24,8 +24,7 @@
     	$select.push(
     		$('#writers').select2({
     			placeholder: 'Виберiть авторiв',
-    			dropdownCssClass: 'select2-font-size',
-    			minimumResultsForSearch: -1,
+    			dropdownCssClass: 'select2-font-size'
     		})
     	);
     	$select.push(

@@ -7,6 +7,10 @@
         color: white;
         font-weight: 600;
       }
+
+      .cmn-category-content-buttons {
+        transform: translateY(-50%);
+      }
     </style>
     <link rel="stylesheet" href="/stylesheets/load-page.css">
     <link rel='stylesheet' href='/stylesheets/writers.css' type='text/css'>
@@ -50,7 +54,7 @@
                 <%= item.name %> 
                 (<%= bornDay %> <%= bornMonth %> <%= bornYear %> -
                 <% if (deathDate == '') { %>
-                  Нашi днi)
+                  нашi днi)
                 <% } else { %>
                   <%= deathDay %> <%= deathMonth %> <%= deathYear %>)
                 <% } %>

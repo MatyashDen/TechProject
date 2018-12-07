@@ -359,6 +359,17 @@ textarea
     animation: ripple 1s ease-out;
 }
 
+.cmn-button-center {
+    margin: 2vw auto;
+    display: block;
+}
+
+.cmn-button-big {
+    width: auto;
+    font-size: 2.5vw;
+    padding: 1.5vw;
+}
+
 .cmn-delete-button
 {
     color: #f00;
@@ -377,16 +388,6 @@ textarea
     background: white!important;
 }
 
-.cmn-button-center {
-    margin: 2vw auto;
-    display: block;
-}
-
- .cmn-button-big {
-    width: auto;
-    font-size: 2.5vw;
-    padding: 1.5vw;
-}
 
 #crop-bar > .cmn-button {
     margin-top: 2vw;

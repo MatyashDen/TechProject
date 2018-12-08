@@ -223,6 +223,22 @@ app.get("/genres/change/:genreId", function(request, response) {
   });
 });
 
+// Users page
+app.get("/users", function(request, response) {
+  let usersCol = db.collection("users");
+
+  usersCol.orderBy("dateOfAdd", "desc").get()
+  .then(function(usersQuery) {
+    let users = [];
+
+    usersQuery.forEach(function(doc) { 
+      users.push(doc.data());
+    });
+
+    response.render("pages/users", {users: users});
+  });
+});
+
 // Journal
 app.get("/requests", function(request, response) {
   let 

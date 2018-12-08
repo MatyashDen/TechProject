@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <style>
+      #nav-users {
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/load-page.css">
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/load-page.ejs %>
+    <% if (users.length == 0) { %>
+      <div class="cmn-no-tables">
+        Немає користувачiв
+      </div>
+    <% } else { %>
+      <div class="cmn-row">
+        <% users.forEach(function(item) { %>
+          <div class="cmn-category-block" data-id="<%= item.id %>">
+            <div class="cmn-category-content">
+              <div class="cmn-category-content-text">
+                <div class="cmn-category-title"><%= item.name %></div>
+                <div class="cmn-category-title"><%= item.email %></div>
+                <div class="cmn-category-title"><%= item.bornDate %></div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %> 
+    
+  </body>
+</html>

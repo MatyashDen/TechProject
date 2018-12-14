@@ -31,8 +31,9 @@
                 <button onclick="declineRequest('<%= item.id %>')" class="cmn-button cmn-delete-button">Вiдхилити</button>
               </div>
               <div class="cmn-category-content-text">
-                <div class="cmn-category-title"><%= item.userName %></div>
-                <div class="cmn-category-title"><%= item.bookTitle %></div>
+                <span class="cmn-category-title"><%= item.userName %></span>
+                <span class="cmn-category-title"><%= item.bookTitle %></span>
+                <span class="cmn-category-title"><%= item.recieveTime.replace(/T|-/g, " ") %></span>
               </div>
             </div>
           </div>

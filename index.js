@@ -88,7 +88,7 @@ app.get("/books", function(request, response) {
         writersId.forEach(function(id, index2) {
           writersCol.doc(id).get()
           .then(function(doc2) {
-            books[index].writers[index2] = doc2.data().name;
+            books[index].writers[index2] = doc2.data().name;  
             barrier2.countDown();
           });
         });
